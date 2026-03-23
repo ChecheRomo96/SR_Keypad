@@ -24,6 +24,10 @@
 
                 void Write(uint8_t Data);
                 void Write(uint8_t* Data, uint8_t len);
+
+                void Data(bool x);
+                void Clock();
+                void Latch();
             
         };
     }

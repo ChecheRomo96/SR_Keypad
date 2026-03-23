@@ -20,19 +20,32 @@ SR_Keypad::SIPO::SIPO(
 void SR_Keypad::SIPO::Write(uint8_t Data){
     
     for(uint8_t i = 0; i < 8; i++){
-        if(_DataController){_DataController((Data>>i)&0b1);}
-        if(_ClockController){_ClockController();}
+        this -> Data((Data>>i)&0b1);
+        Clock();
     }
 
-    if(_LatchController){_LatchController();}
+    Latch();
 }
 
 void SR_Keypad::SIPO::Write(uint8_t* Data, uint8_t len){
 
     for(uint8_t i = 0; i < len*8; i++){
-        if(_DataController){_DataController((Data[i/8]>>(i%8))&0b1);}
-        if(_ClockController){_ClockController();}
+       this -> Data((Data[i/8]>>(i%8))&0b1);
+        Clock();
     }
 
+    Latch();
+}
+
+void SR_Keypad::SIPO::Data(bool x){
+    if(_DataController){_DataController(x);}
+}
+
+void SR_Keypad::SIPO::Clock(){
+    if(_ClockController){_ClockController();}
+}
+
+void SR_Keypad::SIPO::Latch(){
     if(_LatchController){_LatchController();}
 }
+

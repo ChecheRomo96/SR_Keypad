@@ -4,9 +4,7 @@
     #include <stdint.h>
 
     #include "SIPO/SIPO.h"
-
-    namespace SR_Keypad{
-
-    }
+    #include "PISO/PISO.h"
+    #include "Keypad/Keypad.h"
 
 #endif//SR_KEYPAD_H
